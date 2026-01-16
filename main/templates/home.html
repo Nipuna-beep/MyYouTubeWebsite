@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nipuna AI Studio | The Future of Intelligence</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #a855f7;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body { 
+            background: #020617;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.2rem;
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Styling */
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #ffffff 30%, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Universal AI Card */
+        .ai-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ai-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.1);
+        }
+
+        .video-thumb {
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-glow {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            color: white !important;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Tool Badge */
+        .tool-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        footer {
+            background: rgba(2, 6, 23, 0.9);
+            border-top: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <canvas id="snow-canvas"></canvas>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">NIPUNA AI</a>
+            <div class="ms-auto">
+                <a href="https://youtube.com" class="btn btn-outline-info rounded-pill px-4">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container py-5 mt-5 text-center">
+        <h1 class="hero-title">INTELLIGENCE <br> REIMAGINED</h1>
+        <p class="lead text-secondary mb-5 mx-auto" style="max-width: 650px;">
+            AI තාක්ෂණයේ අනාගතය අදම අත්විඳින්න. නවතම පාඩම් සහ මෙවලම් එකම තැනකින්.
+        </p>
+        
+        <div class="row g-4 mt-5">
+            {% if videos %}
+                {% for video in videos %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="ai-card text-start">
+                        <img src="{{ video.thumbnail }}" class="img-fluid video-thumb" alt="Thumbnail">
+                        <h6 class="text-white mb-3" style="height: 45px; overflow: hidden;">{{ video.title }}</h6>
+                        <a href="https://www.youtube.com/watch?v={{ video.video_id }}" target="_blank" class="btn btn-glow w-100 btn-sm">Watch Tutorial</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="container py-5">
+        <h2 class="text-center mb-5" style="font-family: 'Orbitron';">TOP AI TOOLS</h2>
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="ai-card text-center">
+                    <i class="bi bi-chat-left-dots tool-icon"></i>
+                    <h5 class="mt-3">ChatGPT</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-card text-center">
+                    <i class="bi bi-palette tool-icon"></i>
+                    <h5 class="mt-3">Midjourney</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-card text-center">
+                    <i class="bi bi-translate tool-icon"></i>
+                    <h5 class="mt-3">Gemini</h5>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="ai-card text-center">
+                    <i class="bi bi-camera-video tool-icon"></i>
+                    <h5 class="mt-3">Sora</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5 mt-5 text-center">
+        <div class="container">
+            <div class="mb-4">
+                <a href="#" class="text-info mx-3 fs-3"><i class="bi bi-youtube"></i></a>
+                <a href="#" class="text-info mx-3 fs-3"><i class="bi bi-github"></i></a>
+                <a href="#" class="text-info mx-3 fs-3"><i class="bi bi-discord"></i></a>
+            </div>
+            <p class="text-secondary small">© 2026 NIPUNA AI STUDIO | Designed for the Future</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y > canvas.height) this.y = -10;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        function init() { for (let i = 0; i < 100; i++) particles.push(new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+    </script>
+</body>
+</html>
