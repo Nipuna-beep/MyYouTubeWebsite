@@ -2,7 +2,7 @@ from django.shortcuts import render
 import google.generativeai as genai
 
 # ඔබේ API Key එක මෙහි ඇතුළත් කරන්න
-genai.configure(api_key="ඔබේ_API_KEY_එක_මෙතනට_දමන්න")
+genai.configure(api_key="AIzaSyAIwQriTgHeZ_C9G_HtjhxLXZ7cVSYvTlc")
 
 def home(request):
     # Session එකේ චැට් හිස්ට්‍රියක් නැතිනම් අලුතින් එකක් සාදන්න
