@@ -15,7 +15,7 @@ def home(request):
         if user_input:
             try:
                 # Gemini AI එකෙන් පිළිතුරක් ලබා ගැනීම
-                model = genai.GenerativeModel('gemini-pro')
+                model = genai.GenerativeModel('gemini-1.5-flash')
                 response = model.generate_content(user_input)
                 ai_msg = response.text
                 
